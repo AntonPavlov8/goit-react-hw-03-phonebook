@@ -1,4 +1,11 @@
+import { useState } from 'react';
+import { PhoneBook } from './PhoneBook';
+
 export const App = () => {
+  const [state, setState] = useState({
+    contacts: [],
+  });
+
   return (
     <div
       style={{
@@ -6,11 +13,11 @@ export const App = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 40,
+        fontSize: 20,
         color: '#010101',
       }}
     >
-      React homework
+      <PhoneBook state={state} setState={setState} />
     </div>
   );
 };
