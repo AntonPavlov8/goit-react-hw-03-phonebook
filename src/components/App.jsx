@@ -8,24 +8,24 @@ export const App = () => {
     isInitialRender: true,
   });
 
+  // Effect for initial data retrieval
   useEffect(() => {
-    function updateLocalStorage() {
-      if (state.isInitialRender) {
-        const storedData = localStorage.getItem('myData');
-        if (storedData) {
-          const parsedData = JSON.parse(storedData);
-          setState(() => {
-            return {
-              contacts: [...parsedData],
-              isInitialRender: false,
-            };
-          });
-        }
-      } else {
-        localStorage.setItem('myData', JSON.stringify(state.contacts));
-      }
+    const storedData = localStorage.getItem('myData');
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      setState(prevState => ({
+        ...prevState,
+        contacts: [...parsedData],
+        isInitialRender: false,
+      }));
     }
-    updateLocalStorage();
+  }, []);
+
+  // Effect for subsequent storage updates
+  useEffect(() => {
+    if (!state.isInitialRender) {
+      localStorage.setItem('myData', JSON.stringify(state.contacts));
+    }
   }, [state]);
 
   return (

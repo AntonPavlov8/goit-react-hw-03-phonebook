@@ -10,7 +10,10 @@ export const Contacts = prop => {
 
   const showContacts = data => {
     return data.length === 0 ? (
-      <li>No contacts {searchResults.isSearching && 'found with this name'}</li>
+      <li>
+        No contacts{' '}
+        {searchResults.isSearching && 'found with this name or number'}
+      </li>
     ) : (
       data.map(contact => (
         <ContactsItem
