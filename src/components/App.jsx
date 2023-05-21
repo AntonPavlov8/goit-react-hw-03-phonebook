@@ -20,7 +20,10 @@ export const App = () => {
       }));
     }
 
-    return () => localStorage.setItem('SHIT', 'shit small');
+    return () => {
+      console.log('FUCKING UNMOUNT');
+      localStorage.setItem('SHIT', 'shit small');
+    };
   }, []);
 
   // Effect for subsequent storage updates
@@ -42,6 +45,9 @@ export const App = () => {
         color: '#010101',
       }}
     >
+      <button onClick={() => localStorage.setItem('SHIT', 'shit small button')}>
+        in local storage?
+      </button>
       <PhoneBook state={state} setState={setState} />
     </div>
   );
