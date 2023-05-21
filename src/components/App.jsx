@@ -7,7 +7,7 @@ export const App = () => {
     contacts: [],
     isInitialRender: true,
   });
-  console.log('STATE OF SHIT = ', state);
+
   // Effect for initial data retrieval
   useEffect(() => {
     const storedData = localStorage.getItem('myData');
@@ -29,7 +29,6 @@ export const App = () => {
   // Effect for subsequent storage updates
   useEffect(() => {
     if (!state.isInitialRender) {
-      console.log('HERE SOME SHIT');
       localStorage.setItem('myData', JSON.stringify(state.contacts));
     }
   }, [state]);
